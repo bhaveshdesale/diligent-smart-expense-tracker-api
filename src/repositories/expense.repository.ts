@@ -3,8 +3,9 @@ import path from "path";
 import { randomUUID } from "crypto";
 
 import type { Expense } from "../types/expense.types.js";
+import { env } from "../config/env.js";
 
-const DATA_FILE = path.join(process.cwd(), "src", "data", "expenses.json");
+const DATA_FILE = path.resolve(env.DATA_FILE);
 
 export class ExpenseRepository {
   private async readExpenses(): Promise<Expense[]> {
