@@ -18,7 +18,27 @@ export const createExpenseSchema = z.object({
       .min(1, "Category is required")
       .max(50, "Category cannot exceed 50 characters"),
 
-    date: z.string().date("Invalid date format"),
+    date: z.iso.date({
+      message: "Invalid date format. Expected YYYY-MM-DD",
+    }),
+  }),
+});
+
+export const deleteExpenseSchema = z.object({
+  params: z.object({
+    id: z.uuid("Invalid expense ID"),
+  }),
+});
+
+export const getExpensesSchema = z.object({
+  query: z.object({
+    category: z.string().trim().optional(),
+  }),
+});
+
+export const getExpenseTotalSchema = z.object({
+  query: z.object({
+    category: z.string().trim().optional(),
   }),
 });
 

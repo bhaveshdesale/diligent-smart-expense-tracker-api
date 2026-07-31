@@ -1,12 +1,9 @@
 import { Router } from "express";
 
+import { expenseRouter } from "./expense.routes.js";
+
 const router = Router();
 
-router.get("/health", (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Smart Expense Tracker API is running",
-  });
-});
+router.use("/expenses", expenseRouter);
 
-export default router;
+export { router };
